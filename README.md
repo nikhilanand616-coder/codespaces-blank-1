@@ -1,6 +1,14 @@
 # FinCommand - Professional Financial Calculator Platform
 
+[![Project Status](https://img.shields.io/badge/status-production-green.svg)](https://github.com/nikhilanand616-coder/codespaces-blank-1)
+[![GitHub Repo Size](https://img.shields.io/github/repo-size/nikhilanand616-coder/codespaces-blank-1.svg)](https://github.com/nikhilanand616-coder/codespaces-blank-1)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A modern, fully-functioning financial calculator application with user authentication, real-time bank rate syncing, and advanced financial calculations.
+
+## 📌 Project Overview
+
+FinCommand is a complete full-stack finance dashboard that delivers secure login, live bank rates, and powerful calculators for RD, FD, EMI, and net worth planning. The project is designed to be visible immediately on the GitHub front page and ready for deployment.
 
 ## 🎯 Features
 
