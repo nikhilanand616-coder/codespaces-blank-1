@@ -1,0 +1,27 @@
+{
+  "updatedAt": "2026-04-20T00:00:00.000Z",
+  "rdBanks": [
+    { "id": "hdfc", "name": "HDFC Bank", "rate": 7.0 },
+    { "id": "icici", "name": "ICICI Bank", "rate": 7.1 },
+    { "id": "axis", "name": "Axis Bank", "rate": 7.2 },
+    { "id": "kotak", "name": "Kotak Mahindra Bank", "rate": 7.4 },
+    { "id": "indusind", "name": "IndusInd Bank", "rate": 7.5 },
+    { "id": "yes", "name": "YES Bank", "rate": 7.25 },
+    { "id": "idfc", "name": "IDFC First Bank", "rate": 7.5 },
+    { "id": "federal", "name": "Federal Bank", "rate": 7.3 },
+    { "id": "sbi", "name": "State Bank of India (SBI)", "rate": 6.8 },
+    { "id": "au", "name": "AU Small Finance Bank", "rate": 8.0 }
+  ],
+  "fdBanks": [
+    { "id": "hdfc", "name": "HDFC Bank", "rate": 7.1 },
+    { "id": "icici", "name": "ICICI Bank", "rate": 7.2 },
+    { "id": "axis", "name": "Axis Bank", "rate": 7.3 },
+    { "id": "kotak", "name": "Kotak Mahindra Bank", "rate": 7.4 },
+    { "id": "indusind", "name": "IndusInd Bank", "rate": 7.75 },
+    { "id": "yes", "name": "YES Bank", "rate": 7.5 },
+    { "id": "idfc", "name": "IDFC First Bank", "rate": 7.75 },
+    { "id": "federal", "name": "Federal Bank", "rate": 7.4 },
+    { "id": "sbi", "name": "State Bank of India (SBI)", "rate": 7.0 },
+    { "id": "au", "name": "AU Small Finance Bank", "rate": 8.0 }
+  ]
+}

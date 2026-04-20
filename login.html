@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinCommand Login</title>
+  <meta name="description" content="FinCommand login and registration page with API key authentication.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="auth-shell">
+    <div class="auth-card">
+      <header class="auth-header">
+        <div class="nav-logo">Fin<span>Command</span></div>
+        <p class="auth-copy">Sign in or create an account to access your financial console.</p>
+      </header>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" data-form="login">Existing User</button>
+        <button type="button" class="auth-tab" data-form="register">New User</button>
+      </div>
+
+      <form id="login-form" class="auth-form active" autocomplete="off">
+        <label>Email address</label>
+        <input type="email" id="login-email" required placeholder="you@example.com">
+
+        <label>Password</label>
+        <input type="password" id="login-password" required placeholder="Enter your password">
+
+        <button type="submit" class="btn-primary">Sign In</button>
+      </form>
+
+      <form id="register-form" class="auth-form" autocomplete="off">
+        <label>Email address</label>
+        <input type="email" id="register-email" required placeholder="you@example.com">
+
+        <label>Password</label>
+        <input type="password" id="register-password" required placeholder="Create a password">
+
+        <label>Confirm password</label>
+        <input type="password" id="register-confirm" required placeholder="Confirm password">
+
+        <button type="submit" class="btn-primary">Create Account</button>
+      </form>
+
+      <div class="auth-footer">
+        <p>Existing user? Use <strong>existing@fincommand.local</strong> / <strong>FinCommand123!</strong></p>
+        <p class="auth-message" id="auth-message"></p>
+      </div>
+    </div>
+  </div>
+  <script src="auth.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[
+  {
+    "email": "existing@fincommand.local",
+    "passwordHash": "42b962629cf6d386e8d2ad09e58ee7f38e6953aa1b1287371012c7f84a6fe2b6e1db6223ed348a6a1d8b17639c58e063e6e63393e8645e9a36e885b0be2ebd82",
+    "salt": "28fe4915d7671bc62f70a86b73eb11c4",
+    "apiKey": "d2bf2cb8d6655dd1cdf8f3eb8af2355bbd4c3f44ec086e09d0f626144f465e54",
+    "createdAt": "2026-04-20T07:46:41.946Z"
+  },
+  {
+    "email": "test@example.com",
+    "passwordHash": "b551d4061ef13122d3ab865ec8571dd2c0b51c66550bbf40d4f3506c4f0012d717e54dd2ed071e3aa08895455039d60e55d1ccd4592e049c837d6e1d83125212",
+    "salt": "ac70c0c443ee18d07a48bc50c764e8d4",
+    "apiKey": "a7503124024067ec9211e01c09aeee4d43e02927d545d599e97e30aebee85a15",
+    "createdAt": "2026-04-20T07:50:39.566Z"
+  },
+  {
+    "email": "nikhilanand616@gmail.com",
+    "passwordHash": "22347082805de7d4115d9954cf0aab6b01ad2096f91bfe8a955a1a43333cb29aded554c2dd0e585937091cbda6e68a093e91c42e5d119ff41bb84d8058ca61f7",
+    "salt": "9d20920da46f5f319be7e0e4dd11ded2",
+    "apiKey": "d9b748540e0ffb0ba61a81725ca21429af6b50e4c9bef987b5ec001aa80d6015",
+    "createdAt": "2026-04-20T07:55:12.044Z"
+  }
+]

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinCommand — Vision Global</title>
+<meta name="description" content="FinCommand financial dashboard with RD, FD, EMI, and Net Worth calculators.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="ambient-container">
+  <div class="ambient-blob blob-1"></div>
+  <div class="ambient-blob blob-2"></div>
+  <div class="ambient-blob blob-3"></div>
+  <div class="ambient-blob blob-4"></div>
+</div>
+
+<nav>
+  <div class="nav-logo">Fin<span>Command</span></div>
+  <ul class="nav-links">
+    <li id="nav-user-display">Signed in</li>
+    <li><a href="#calculators">Global Dashboard</a></li>
+    <li><button type="button" class="nav-cta" id="logout-button">Logout</button></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div style="position:relative;z-index:1;">
+    <div class="hero-badge">Global Finance Network Live</div>
+    <h1 class="hero-title">
+      Borderless<br>Calculations.
+    </h1>
+    <p class="hero-sub">
+      Connect with over 40+ leading global institutions. Real-time metrics for Indian Private, Public, and International Banking giants.
+    </p>
+    <div class="hero-actions">
+      <a href="#calculators" class="btn-primary">Explore Global Rates</a>
+    </div>
+  </div>
+</section>
+
+<section id="calculators">
+  <div class="container">
+    <span class="section-label">Computation Network</span>
+    <h2 class="section-title">Omni-Financial Engine</h2>
+
+    <div class="calc-tabs" role="tablist">
+      <button class="calc-tab active" role="tab" aria-selected="true" data-tab="calc-rd">Global RD</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-fd">Global FD</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-emi">EMI</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-nw">Net Worth</button>
+    </div>
+
+    <div id="calc-rd" class="calc-panel active" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Recurring Deposit</div>
+        <div class="form-group">
+          <label>Global Banking Partner</label>
+          <select id="rd-bank" class="input-minimal" data-panel="rd">
+            <option value="custom">-- Enter Custom Rate --</option>
+            
+            <optgroup label="Top Indian Private Banks">
+              <option value="7.0" data-bank="HDFC Bank">HDFC Bank (7.0%)</option>
+              <option value="7.1" data-bank="ICICI Bank">ICICI Bank (7.1%)</option>
+              <option value="7.2" data-bank="Axis Bank">Axis Bank (7.2%)</option>
+              <option value="7.4" data-bank="Kotak Mahindra Bank">Kotak Mahindra Bank (7.4%)</option>
+              <option value="7.5" data-bank="IndusInd Bank">IndusInd Bank (7.5%)</option>
+              <option value="7.25" data-bank="YES Bank">YES Bank (7.25%)</option>
+              <option value="7.5" data-bank="IDFC First Bank">IDFC First Bank (7.5%)</option>
+              <option value="7.3" data-bank="Federal Bank">Federal Bank (7.3%)</option>
+              <option value="7.0" data-bank="South Indian Bank">South Indian Bank (7.0%)</option>
+              <option value="7.4" data-bank="Bandhan Bank">Bandhan Bank (7.4%)</option>
+            </optgroup>
+
+            <optgroup label="Top Indian Public Sector Banks (PSU)">
+              <option value="6.8" data-bank="State Bank of India (SBI)">State Bank of India (SBI) (6.8%)</option>
+              <option value="7.0" data-bank="Punjab National Bank">Punjab National Bank (7.0%)</option>
+              <option value="6.75" data-bank="Bank of Baroda">Bank of Baroda (6.75%)</option>
+              <option value="6.8" data-bank="Canara Bank">Canara Bank (6.8%)</option>
+              <option value="6.5" data-bank="Union Bank of India">Union Bank of India (6.5%)</option>
+              <option value="6.5" data-bank="Bank of India">Bank of India (6.5%)</option>
+              <option value="6.7" data-bank="Indian Bank">Indian Bank (6.7%)</option>
+              <option value="6.5" data-bank="Central Bank of India">Central Bank of India (6.5%)</option>
+              <option value="6.5" data-bank="UCO Bank">UCO Bank (6.5%)</option>
+              <option value="6.5" data-bank="Bank of Maharashtra">Bank of Maharashtra (6.5%)</option>
+            </optgroup>
+
+            <optgroup label="Indian Small Finance Banks (High Yield)">
+              <option value="8.0" data-bank="AU Small Finance">AU Small Finance (8.0%)</option>
+              <option value="8.25" data-bank="Equitas Small Finance">Equitas Small Finance (8.25%)</option>
+              <option value="8.5" data-bank="Ujjivan Small Finance">Ujjivan Small Finance (8.5%)</option>
+              <option value="8.1" data-bank="Utkarsh Small Finance">Utkarsh Small Finance (8.1%)</option>
+              <option value="8.5" data-bank="Suryoday Small Finance">Suryoday Small Finance (8.5%)</option>
+            </optgroup>
+
+            <optgroup label="Foreign Banks Operating in India">
+              <option value="6.5" data-bank="Citibank India">Citibank India (6.5%)</option>
+              <option value="6.75" data-bank="Standard Chartered">Standard Chartered (6.75%)</option>
+              <option value="7.0" data-bank="HSBC India">HSBC India (7.0%)</option>
+              <option value="7.1" data-bank="DBS Bank India">DBS Bank India (7.1%)</option>
+              <option value="6.5" data-bank="Barclays India">Barclays India (6.5%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (USA)">
+              <option value="4.5" data-bank="JPMorgan Chase (US)">JPMorgan Chase (US) (4.5%)</option>
+              <option value="4.3" data-bank="Bank of America">Bank of America (4.3%)</option>
+              <option value="4.5" data-bank="Wells Fargo">Wells Fargo (4.5%)</option>
+              <option value="5.0" data-bank="Goldman Sachs (Marcus)">Goldman Sachs (Marcus) (5.0%)</option>
+              <option value="4.8" data-bank="Citigroup (US)">Citigroup (US) (4.8%)</option>
+              <option value="4.25" data-bank="Morgan Stanley">Morgan Stanley (4.25%)</option>
+              <option value="4.6" data-bank="Capital One">Capital One (4.6%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (Europe & UK)">
+              <option value="4.0" data-bank="HSBC Holdings (UK)">HSBC Holdings (UK) (4.0%)</option>
+              <option value="3.8" data-bank="Barclays (UK)">Barclays (UK) (3.8%)</option>
+              <option value="4.1" data-bank="Lloyds Banking Group">Lloyds Banking Group (4.1%)</option>
+              <option value="3.5" data-bank="BNP Paribas (France)">BNP Paribas (France) (3.5%)</option>
+              <option value="3.5" data-bank="Credit Agricole (France)">Credit Agricole (France) (3.5%)</option>
+              <option value="3.75" data-bank="Deutsche Bank (Germany)">Deutsche Bank (Germany) (3.75%)</option>
+              <option value="3.2" data-bank="UBS (Switzerland)">UBS (Switzerland) (3.2%)</option>
+              <option value="3.9" data-bank="Santander (Spain)">Santander (Spain) (3.9%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (Asia Pacific)">
+              <option value="2.5" data-bank="ICBC (China)">ICBC (China) (2.5%)</option>
+              <option value="2.5" data-bank="Bank of China">Bank of China (2.5%)</option>
+              <option value="3.0" data-bank="Mitsubishi UFJ (Japan)">Mitsubishi UFJ (Japan) (3.0%)</option>
+              <option value="3.2" data-bank="Sumitomo Mitsui (Japan)">Sumitomo Mitsui (Japan) (3.2%)</option>
+              <option value="4.5" data-bank="Commonwealth Bank (Aus)">Commonwealth Bank (Aus) (4.5%)</option>
+              <option value="4.75" data-bank="ANZ Bank (Aus)">ANZ Bank (Aus) (4.75%)</option>
+            </optgroup>
+          </select>
+          <div id="rd-bank-badge" class="bank-badge" style="display:none;"></div>
+        </div>
+        <div class="form-group">
+          <label>Monthly Deposit (₹)</label>
+          <input type="number" id="rd-monthly" class="input-minimal" value="10000" data-panel="rd">
+        </div>
+        <div class="form-group">
+          <label>Interest Rate (%)</label>
+          <div class="range-row"><input type="range" id="rd-rate-range" data-panel="rd" data-unit="%" min="1" max="15" step="0.1" value="7.0"><span class="range-val" id="rd-rate-val">7.0%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Tenure (Months)</label>
+          <div class="range-row"><input type="range" id="rd-tenure-range" data-panel="rd" data-unit="Mo" min="3" max="120" step="1" value="24"><span class="range-val" id="rd-tenure-val">24 Mo</span></div>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="rd">Calculate Returns</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Maturity Overview</div>
+        <div class="result-main">
+          <div class="result-label">Estimated Value</div>
+          <div class="result-value success" id="rd-maturity">₹2,58,624</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Amount Invested</span><span class="r-val" id="rd-invested-disp">₹2,40,000</span></div>
+          <div class="result-row"><span class="r-label">Wealth Gained</span><span class="r-val success" id="rd-interest-disp">₹18,624</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="calc-fd" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Fixed Deposit</div>
+        <div class="form-group">
+          <label>Global Banking Partner</label>
+          <select id="fd-bank" class="input-minimal" data-panel="fd">
+            <option value="custom">-- Enter Custom Rate --</option>
+            
+            <optgroup label="Top Indian Private Banks">
+              <option value="7.1" data-bank="HDFC Bank">HDFC Bank (7.1%)</option>
+              <option value="7.2" data-bank="ICICI Bank">ICICI Bank (7.2%)</option>
+              <option value="7.3" data-bank="Axis Bank">Axis Bank (7.3%)</option>
+              <option value="7.4" data-bank="Kotak Mahindra Bank">Kotak Mahindra Bank (7.4%)</option>
+              <option value="7.75" data-bank="IndusInd Bank">IndusInd Bank (7.75%)</option>
+              <option value="7.5" data-bank="YES Bank">YES Bank (7.5%)</option>
+              <option value="7.75" data-bank="IDFC First Bank">IDFC First Bank (7.75%)</option>
+              <option value="7.4" data-bank="Federal Bank">Federal Bank (7.4%)</option>
+            </optgroup>
+
+            <optgroup label="Top Indian Public Sector Banks (PSU)">
+              <option value="7.0" data-bank="State Bank of India (SBI)">State Bank of India (SBI) (7.0%)</option>
+              <option value="7.25" data-bank="Punjab National Bank">Punjab National Bank (7.25%)</option>
+              <option value="7.15" data-bank="Bank of Baroda">Bank of Baroda (7.15%)</option>
+              <option value="7.0" data-bank="Canara Bank">Canara Bank (7.0%)</option>
+              <option value="6.8" data-bank="Union Bank of India">Union Bank of India (6.8%)</option>
+              <option value="6.8" data-bank="Bank of India">Bank of India (6.8%)</option>
+              <option value="6.75" data-bank="Central Bank of India">Central Bank of India (6.75%)</option>
+            </optgroup>
+
+            <optgroup label="Indian Small Finance Banks (High Yield)">
+              <option value="8.0" data-bank="AU Small Finance">AU Small Finance (8.0%)</option>
+              <option value="8.5" data-bank="Equitas Small Finance">Equitas Small Finance (8.5%)</option>
+              <option value="8.5" data-bank="Ujjivan Small Finance">Ujjivan Small Finance (8.5%)</option>
+              <option value="8.25" data-bank="Utkarsh Small Finance">Utkarsh Small Finance (8.25%)</option>
+              <option value="8.6" data-bank="Suryoday Small Finance">Suryoday Small Finance (8.6%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (USA)">
+              <option value="4.7" data-bank="JPMorgan Chase (US)">JPMorgan Chase (US) (4.7%)</option>
+              <option value="4.5" data-bank="Bank of America">Bank of America (4.5%)</option>
+              <option value="4.6" data-bank="Wells Fargo">Wells Fargo (4.6%)</option>
+              <option value="5.1" data-bank="Goldman Sachs (Marcus)">Goldman Sachs (Marcus) (5.1%)</option>
+              <option value="4.8" data-bank="Citigroup (US)">Citigroup (US) (4.8%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (Europe & UK)">
+              <option value="4.2" data-bank="HSBC Holdings (UK)">HSBC Holdings (UK) (4.2%)</option>
+              <option value="4.0" data-bank="Barclays (UK)">Barclays (UK) (4.0%)</option>
+              <option value="3.8" data-bank="BNP Paribas (France)">BNP Paribas (France) (3.8%)</option>
+              <option value="4.0" data-bank="Deutsche Bank (Germany)">Deutsche Bank (Germany) (4.0%)</option>
+              <option value="3.5" data-bank="UBS (Switzerland)">UBS (Switzerland) (3.5%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (Asia Pacific)">
+              <option value="2.75" data-bank="ICBC (China)">ICBC (China) (2.75%)</option>
+              <option value="3.2" data-bank="Mitsubishi UFJ (Japan)">Mitsubishi UFJ (Japan) (3.2%)</option>
+              <option value="4.75" data-bank="Commonwealth Bank (Aus)">Commonwealth Bank (Aus) (4.75%)</option>
+              <option value="3.8" data-bank="DBS Bank (Singapore)">DBS Bank (Singapore) (3.8%)</option>
+            </optgroup>
+          </select>
+          <div id="fd-bank-badge" class="bank-badge" style="display:none;"></div>
+        </div>
+        <div class="form-group">
+          <label>Principal Amount (₹)</label>
+          <input type="number" id="fd-principal" class="input-minimal" value="500000" data-panel="fd">
+        </div>
+        <div class="form-group">
+          <label>Interest Rate (%)</label>
+          <div class="range-row"><input type="range" id="fd-rate-range" data-panel="fd" data-unit="%" min="1" max="15" step="0.1" value="7.1"><span class="range-val" id="fd-rate-val">7.1%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Tenure (Years)</label>
+          <div class="range-row"><input type="range" id="fd-tenure-range" data-panel="fd" data-unit="Yrs" min="1" max="15" step="0.5" value="3"><span class="range-val" id="fd-tenure-val">3 Yrs</span></div>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="fd">Calculate Returns</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Maturity Overview</div>
+        <div class="result-main">
+          <div class="result-label">Estimated Value</div>
+          <div class="result-value success" id="fd-maturity">₹6,17,627</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Amount Invested</span><span class="r-val" id="fd-principal-disp">₹5,00,000</span></div>
+          <div class="result-row"><span class="r-label">Wealth Gained</span><span class="r-val success" id="fd-interest-disp">₹1,17,627</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="calc-emi" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Loan Configuration</div>
+        <div class="form-group">
+          <label>Principal Amount (₹)</label>
+          <input type="number" id="emi-principal" class="input-minimal" value="1500000" data-panel="emi">
+        </div>
+        <div class="form-group">
+          <label>Interest Rate (%)</label>
+          <div class="range-row"><input type="range" id="emi-rate-range" data-panel="emi" data-unit="%" min="1" max="30" step="0.1" value="9.0"><span class="range-val" id="emi-rate-val">9.0%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Tenure (Years)</label>
+          <div class="range-row"><input type="range" id="emi-tenure-range" data-panel="emi" data-unit="Yrs" min="1" max="30" step="1" value="10"><span class="range-val" id="emi-tenure-val">10 Yrs</span></div>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="emi">Calculate EMI</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Payment Overview</div>
+        <div class="result-main">
+          <div class="result-label">Monthly EMI</div>
+          <div class="result-value warning" id="emi-monthly">₹19,001</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Principal</span><span class="r-val" id="emi-principal-disp">₹15,00,000</span></div>
+          <div class="result-row"><span class="r-label">Interest Payable</span><span class="r-val warning" id="emi-interest-disp">₹7,80,186</span></div>
+          <div class="result-row"><span class="r-label">Total Amount</span><span class="r-val" id="emi-total-disp">₹22,80,186</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="calc-nw" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Asset Calculation</div>
+        <div class="form-group">
+          <label style="color:var(--success)">Total Assets (Investments, Real Estate, Cash)</label>
+          <input type="number" id="nw-assets" class="input-minimal" value="5000000" data-panel="nw">
+        </div>
+        <div class="form-group">
+          <label style="color:var(--warning)">Total Liabilities (Loans, Credit Debt)</label>
+          <input type="number" id="nw-liabilities" class="input-minimal" value="1200000" data-panel="nw">
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="nw">Calculate</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Financial Standing</div>
+        <div class="result-main">
+          <div class="result-label">Net Worth</div>
+          <div class="result-value" id="nw-total">₹38,00,000</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Total Assets</span><span class="r-val success" id="nw-assets-disp">₹50,00,000</span></div>
+          <div class="result-row"><span class="r-label">Total Debt</span><span class="r-val warning" id="nw-liabilities-disp">₹12,00,000</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="nav-logo">Fin<span>Command</span></div>
+  <p style="font-size: 0.85rem; color:var(--text-secondary);">
+    Designed for spatial clarity. Global Matrix v2.0
+  </p>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
