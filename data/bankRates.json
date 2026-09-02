@@ -1,0 +1,159 @@
+{
+  "updatedAt": "2026-04-20T00:00:00.000Z",
+  "rdBanks": [
+    {
+      "label": "Top Indian Private Banks",
+      "banks": [
+        { "id": "hdfc", "name": "HDFC Bank", "rate": 7.0 },
+        { "id": "icici", "name": "ICICI Bank", "rate": 7.1 },
+        { "id": "axis", "name": "Axis Bank", "rate": 7.2 },
+        { "id": "kotak", "name": "Kotak Mahindra Bank", "rate": 7.4 },
+        { "id": "indusind", "name": "IndusInd Bank", "rate": 7.5 },
+        { "id": "yes", "name": "YES Bank", "rate": 7.25 },
+        { "id": "idfc", "name": "IDFC First Bank", "rate": 7.5 },
+        { "id": "federal", "name": "Federal Bank", "rate": 7.3 },
+        { "id": "rbl", "name": "RBL Bank", "rate": 7.15 },
+        { "id": "bandhan", "name": "Bandhan Bank", "rate": 7.2 }
+      ]
+    },
+    {
+      "label": "Indian Public Sector Banks (PSU)",
+      "banks": [
+        { "id": "sbi", "name": "State Bank of India (SBI)", "rate": 6.8 },
+        { "id": "pnb", "name": "Punjab National Bank", "rate": 6.9 },
+        { "id": "bob", "name": "Bank of Baroda", "rate": 6.85 },
+        { "id": "canara", "name": "Canara Bank", "rate": 6.75 },
+        { "id": "union", "name": "Union Bank of India", "rate": 6.7 },
+        { "id": "boi", "name": "Bank of India", "rate": 6.75 },
+        { "id": "central", "name": "Central Bank of India", "rate": 6.65 },
+        { "id": "indian", "name": "Indian Bank", "rate": 6.7 },
+        { "id": "psb", "name": "Punjab & Sind Bank", "rate": 6.6 },
+        { "id": "uco", "name": "UCO Bank", "rate": 6.55 }
+      ]
+    },
+    {
+      "label": "Indian Small Finance Banks",
+      "banks": [
+        { "id": "au", "name": "AU Small Finance Bank", "rate": 8.0 },
+        { "id": "equitas", "name": "Equitas Small Finance Bank", "rate": 8.2 },
+        { "id": "ujjivan", "name": "Ujjivan Small Finance Bank", "rate": 8.1 },
+        { "id": "utkarsh", "name": "Utkarsh Small Finance Bank", "rate": 8.15 },
+        { "id": "suryoday", "name": "Suryoday Small Finance Bank", "rate": 8.3 },
+        { "id": "fincare", "name": "Fincare Small Finance Bank", "rate": 8.05 }
+      ]
+    },
+    {
+      "label": "Global Banks (North America)",
+      "banks": [
+        { "id": "jpm", "name": "JPMorgan Chase", "rate": 4.7 },
+        { "id": "boa", "name": "Bank of America", "rate": 4.5 },
+        { "id": "wells", "name": "Wells Fargo", "rate": 4.6 },
+        { "id": "citi", "name": "Citigroup", "rate": 4.8 },
+        { "id": "gs", "name": "Goldman Sachs (Marcus)", "rate": 5.0 },
+        { "id": "ms", "name": "Morgan Stanley", "rate": 4.9 }
+      ]
+    },
+    {
+      "label": "Global Banks (Europe & UK)",
+      "banks": [
+        { "id": "hsbc", "name": "HSBC Holdings", "rate": 4.3 },
+        { "id": "barclays", "name": "Barclays", "rate": 4.0 },
+        { "id": "bnpp", "name": "BNP Paribas", "rate": 4.1 },
+        { "id": "db", "name": "Deutsche Bank", "rate": 4.2 },
+        { "id": "ubs", "name": "UBS", "rate": 3.8 },
+        { "id": "santander", "name": "Santander", "rate": 3.9 }
+      ]
+    },
+    {
+      "label": "Global Banks (Asia Pacific)",
+      "banks": [
+        { "id": "icbc", "name": "ICBC", "rate": 2.8 },
+        { "id": "boc", "name": "Bank of China", "rate": 2.9 },
+        { "id": "mufj", "name": "Mitsubishi UFJ", "rate": 3.1 },
+        { "id": "smfg", "name": "Sumitomo Mitsui Banking Corporation", "rate": 3.0 },
+        { "id": "dbs", "name": "DBS Bank", "rate": 3.7 },
+        { "id": "cba", "name": "Commonwealth Bank of Australia", "rate": 4.6 },
+        { "id": "anz", "name": "ANZ", "rate": 4.4 },
+        { "id": "ocbc", "name": "OCBC", "rate": 3.6 }
+      ]
+    }
+  ],
+  "fdBanks": [
+    {
+      "label": "Top Indian Private Banks",
+      "banks": [
+        { "id": "hdfc", "name": "HDFC Bank", "rate": 7.1 },
+        { "id": "icici", "name": "ICICI Bank", "rate": 7.2 },
+        { "id": "axis", "name": "Axis Bank", "rate": 7.3 },
+        { "id": "kotak", "name": "Kotak Mahindra Bank", "rate": 7.4 },
+        { "id": "indusind", "name": "IndusInd Bank", "rate": 7.75 },
+        { "id": "yes", "name": "YES Bank", "rate": 7.5 },
+        { "id": "idfc", "name": "IDFC First Bank", "rate": 7.75 },
+        { "id": "federal", "name": "Federal Bank", "rate": 7.45 },
+        { "id": "rbl", "name": "RBL Bank", "rate": 7.2 },
+        { "id": "bandhan", "name": "Bandhan Bank", "rate": 7.25 }
+      ]
+    },
+    {
+      "label": "Indian Public Sector Banks (PSU)",
+      "banks": [
+        { "id": "sbi", "name": "State Bank of India (SBI)", "rate": 7.0 },
+        { "id": "pnb", "name": "Punjab National Bank", "rate": 7.05 },
+        { "id": "bob", "name": "Bank of Baroda", "rate": 7.0 },
+        { "id": "canara", "name": "Canara Bank", "rate": 6.95 },
+        { "id": "union", "name": "Union Bank of India", "rate": 6.85 },
+        { "id": "boi", "name": "Bank of India", "rate": 6.9 },
+        { "id": "central", "name": "Central Bank of India", "rate": 6.8 },
+        { "id": "indian", "name": "Indian Bank", "rate": 6.85 },
+        { "id": "psb", "name": "Punjab & Sind Bank", "rate": 6.75 },
+        { "id": "uco", "name": "UCO Bank", "rate": 6.7 }
+      ]
+    },
+    {
+      "label": "Indian Small Finance Banks",
+      "banks": [
+        { "id": "au", "name": "AU Small Finance Bank", "rate": 8.0 },
+        { "id": "equitas", "name": "Equitas Small Finance Bank", "rate": 8.2 },
+        { "id": "ujjivan", "name": "Ujjivan Small Finance Bank", "rate": 8.1 },
+        { "id": "utkarsh", "name": "Utkarsh Small Finance Bank", "rate": 8.15 },
+        { "id": "suryoday", "name": "Suryoday Small Finance Bank", "rate": 8.3 },
+        { "id": "fincare", "name": "Fincare Small Finance Bank", "rate": 8.05 }
+      ]
+    },
+    {
+      "label": "Global Banks (North America)",
+      "banks": [
+        { "id": "jpm", "name": "JPMorgan Chase", "rate": 5.0 },
+        { "id": "boa", "name": "Bank of America", "rate": 4.8 },
+        { "id": "wells", "name": "Wells Fargo", "rate": 4.9 },
+        { "id": "citi", "name": "Citigroup", "rate": 5.1 },
+        { "id": "gs", "name": "Goldman Sachs (Marcus)", "rate": 5.2 },
+        { "id": "ms", "name": "Morgan Stanley", "rate": 5.0 }
+      ]
+    },
+    {
+      "label": "Global Banks (Europe & UK)",
+      "banks": [
+        { "id": "hsbc", "name": "HSBC Holdings", "rate": 4.4 },
+        { "id": "barclays", "name": "Barclays", "rate": 4.2 },
+        { "id": "bnpp", "name": "BNP Paribas", "rate": 4.3 },
+        { "id": "db", "name": "Deutsche Bank", "rate": 4.35 },
+        { "id": "ubs", "name": "UBS", "rate": 4.0 },
+        { "id": "santander", "name": "Santander", "rate": 4.1 }
+      ]
+    },
+    {
+      "label": "Global Banks (Asia Pacific)",
+      "banks": [
+        { "id": "icbc", "name": "ICBC", "rate": 3.0 },
+        { "id": "boc", "name": "Bank of China", "rate": 3.1 },
+        { "id": "mufj", "name": "Mitsubishi UFJ", "rate": 3.3 },
+        { "id": "smfg", "name": "Sumitomo Mitsui Banking Corporation", "rate": 3.2 },
+        { "id": "dbs", "name": "DBS Bank", "rate": 3.9 },
+        { "id": "cba", "name": "Commonwealth Bank of Australia", "rate": 4.8 },
+        { "id": "anz", "name": "ANZ", "rate": 4.5 },
+        { "id": "ocbc", "name": "OCBC", "rate": 3.7 }
+      ]
+    }
+  ]
+}

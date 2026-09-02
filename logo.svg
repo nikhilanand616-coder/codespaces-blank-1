@@ -1,0 +1,10 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FinCommand logo">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0052FF" />
+      <stop offset="100%" stop-color="#00FFCC" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="28" fill="url(#logoGradient)" />
+  <path d="M36 34h28v12H40v12h23v12H40v28H36V34zm44 16c8.8 0 16 7.2 16 16s-7.2 16-16 16h-8v12h-8V34h16z" fill="#fff"/>
+</svg>

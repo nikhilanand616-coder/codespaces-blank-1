@@ -1,0 +1,19 @@
+node_modules/
+.DS_Store
+npm-debug.log*
+.fincommand/
+.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local runtime/store files
+data/users.json
+tracked-files.txt
+
+# Editor and tooling
+.vscode/
+git-portable/

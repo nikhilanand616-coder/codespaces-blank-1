@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinCommand — Vision Global</title>
+<meta name="description" content="FinCommand financial dashboard with RD, FD, EMI, and Net Worth calculators.">
+<meta name="backend-base-url" content="">
+<link rel="stylesheet" href="styles.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<div class="orbital-scene" aria-hidden="true">
+  <canvas id="motion-canvas"></canvas>
+  <div class="scene-orbit orbit-one"></div>
+  <div class="scene-orbit orbit-two"></div>
+  <div class="scene-core"></div>
+</div>
+
+<div class="ambient-container">
+  <div class="ambient-blob blob-1"></div>
+  <div class="ambient-blob blob-2"></div>
+  <div class="ambient-blob blob-3"></div>
+  <div class="ambient-blob blob-4"></div>
+</div>
+
+<nav>
+  <div class="nav-logo">
+    <img src="logo.svg" alt="FinCommand logo" class="logo-icon">
+    <span class="logo-text">Fin<span>Command</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#calculators" class="nav-link">Dashboard</a>
+    <a href="#premium" class="nav-link">Premium</a>
+  </div>
+  <div class="nav-actions">
+    <button type="button" class="nav-cta secondary-cta" id="theme-toggle">Dark mode</button>
+    <select id="currency-selector" class="input-minimal currency-selector" aria-label="Select currency">
+      <option value="INR" selected>INR</option>
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
+      <option value="GBP">GBP</option>
+    </select>
+    <a href="/login.html" class="nav-link nav-user" id="nav-user-display">Sign In</a>
+    <span id="subscription-badge" class="subscription-badge badge-tier">Free plan</span>
+    <button type="button" class="nav-cta secondary-cta" id="tier-display">Upgrade</button>
+    <button type="button" class="nav-cta logout-cta" id="logout-button">Logout</button>
+  </div>
+</nav>
+
+<section id="hero">
+  <div style="position:relative;z-index:1;">
+    <div class="hero-badge">Global Finance Network Live</div>
+    <p class="hero-badge" style="margin-top:0.75rem; background: rgba(46,204,113,0.12); color: var(--success); border-color: rgba(46,204,113,0.25);">Maximum security enabled • Quick Heal-style protection</p>
+    <h1 class="hero-title">
+      Borderless<br>Calculations.
+    </h1>
+    <p class="hero-sub">
+      Connect with over 40+ leading global institutions. Real-time metrics for Indian Private, Public, and International Banking giants.
+    </p>
+    <div class="command-metrics" aria-label="Platform status">
+      <div class="command-metric"><span class="metric-led"></span><span>Network</span><strong>Live</strong></div>
+      <div class="command-metric"><span>Rates monitored</span><strong>40+</strong></div>
+      <div class="command-metric"><span>Data refresh</span><strong>15s</strong></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#calculators" class="btn-primary">Explore Global Rates</a>
+    </div>
+
+    <div class="hero-3d-stage" aria-hidden="true">
+      <div class="hero-grid-floor"></div>
+      <div class="hero-console">
+        <div class="console-orbit console-orbit-a"></div>
+        <div class="console-orbit console-orbit-b"></div>
+        <div class="console-core">
+          <span class="core-face core-face-front"></span>
+          <span class="core-face core-face-back"></span>
+          <span class="core-face core-face-right"></span>
+          <span class="core-face core-face-left"></span>
+          <span class="core-face core-face-top"></span>
+          <span class="core-face core-face-bottom"></span>
+        </div>
+        <div class="console-scanline"></div>
+      </div>
+      <div class="console-data-card console-data-card-a"><span>ACTIVE NODES</span><strong>40+</strong><i></i></div>
+      <div class="console-data-card console-data-card-b"><span>YIELD SIGNAL</span><strong>+7.00%</strong><i></i></div>
+      <div class="console-data-card console-data-card-c"><span>SYNC STATUS</span><strong>LIVE</strong><i></i></div>
+    </div>
+
+    <div class="hero-share" aria-label="Share login link">
+      <p class="share-copy">Share the login page directly with WhatsApp or Telegram.</p>
+      <div class="share-url-box">
+        <input id="share-login-url" type="text" readonly aria-label="Login page URL">
+        <button type="button" id="copy-share-link" class="btn-outline">Copy link</button>
+      </div>
+      <div class="share-actions">
+        <a id="whatsapp-share" class="btn-outline" target="_blank" rel="noopener noreferrer">Share on WhatsApp</a>
+        <a id="telegram-share" class="btn-outline" target="_blank" rel="noopener noreferrer">Share on Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="premium-upgrade" id="premium">
+  <div class="container upgrade-panel">
+    <div class="upgrade-copy">
+      <span class="section-label">Premium Access</span>
+      <h2 class="section-title">Free version is unlimited — upgrade for advanced tools</h2>
+      <p class="section-text">All calculators are free and unlimited. Pro adds export, historical insights, and charts; Pro Plus adds priority support and API access.</p>
+    </div>
+    <div class="upgrade-actions">
+      <button type="button" class="premium-cta" data-tier="PRO">Pay ₹99 for Pro</button>
+      <button type="button" class="premium-cta secondary-cta" data-tier="PRO_PLUS">Pay ₹299 for Pro Plus</button>
+    </div>
+  </div>
+</section>
+
+<section id="calculators">
+  <div class="container">
+    <span class="section-label">Computation Network</span>
+    <h2 class="section-title">Omni-Financial Engine</h2>
+
+    <div class="calc-tabs" role="tablist">
+      <button class="calc-tab active" role="tab" aria-selected="true" data-tab="calc-rd">Global RD</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-fd">Global FD</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-sip">SIP</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-emi">EMI</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-gst">GST</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-nw">Net Worth</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-loan">Loan Compare</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-ret">Retirement</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-ins">Insurance</button>
+      <button class="calc-tab" role="tab" aria-selected="false" data-tab="calc-bud">Budget</button>
+    </div>
+
+    <section class="ai-bot-panel" aria-labelledby="gemini-title">
+      <div class="bot-header">
+        <div class="bot-avatar">🤖</div>
+        <div class="bot-heading">
+          <div class="bot-title-row">
+            <h3 id="gemini-title">Gemini</h3>
+            <span class="bot-pill">Finance copilot</span>
+          </div>
+          <p>Your unified finance assistant — one Gemini bot for suggestions and intelligent answers.</p>
+        </div>
+        <span class="bot-live"><i></i> Online</span>
+      </div>
+      <div class="bot-suggestions">
+        <div class="bot-note"><span>Latest insight</span><span class="bot-note-hint">Based on your inputs</span></div>
+        <ul id="ai-suggestion-list" class="suggestion-list" aria-live="polite">
+          <li>Adjust calculator inputs to see tailored suggestions.</li>
+        </ul>
+        <div class="ai-chat">
+          <div class="ai-chat-label-row">
+            <label for="ai-question">Ask Gemini</label>
+            <span>Enter to send · Shift + Enter for a new line</span>
+          </div>
+          <textarea id="ai-question" rows="2" placeholder="Ask Gemini how to optimize this plan, compare options, or improve your financial strategy."></textarea>
+          <div class="ai-chat-actions">
+            <span id="ai-status" class="ai-status" aria-live="polite"><i></i> Ready for your question</span>
+            <button type="button" id="ai-submit" class="btn-primary ai-submit"><span>Ask Gemini</span><b aria-hidden="true">↗</b></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="calc-rd" class="calc-panel active" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Recurring Deposit</div>
+        <div class="form-group">
+          <label>Global Banking Partner</label>
+          <select id="rd-bank" class="input-minimal" data-panel="rd">
+            <option value="custom">-- Enter Custom Rate --</option>
+            
+            <optgroup label="Top Indian Private Banks">
+              <option value="7.0" data-bank="HDFC Bank">HDFC Bank (7.0%)</option>
+              <option value="7.1" data-bank="ICICI Bank">ICICI Bank (7.1%)</option>
+              <option value="7.2" data-bank="Axis Bank">Axis Bank (7.2%)</option>
+              <option value="7.4" data-bank="Kotak Mahindra Bank">Kotak Mahindra Bank (7.4%)</option>
+              <option value="7.5" data-bank="IndusInd Bank">IndusInd Bank (7.5%)</option>
+              <option value="7.25" data-bank="YES Bank">YES Bank (7.25%)</option>
+              <option value="7.5" data-bank="IDFC First Bank">IDFC First Bank (7.5%)</option>
+              <option value="7.3" data-bank="Federal Bank">Federal Bank (7.3%)</option>
+              <option value="7.0" data-bank="South Indian Bank">South Indian Bank (7.0%)</option>
+              <option value="7.4" data-bank="Bandhan Bank">Bandhan Bank (7.4%)</option>
+            </optgroup>
+
+            <optgroup label="Top Indian Public Sector Banks (PSU)">
+              <option value="6.8" data-bank="State Bank of India (SBI)">State Bank of India (SBI) (6.8%)</option>
+              <option value="7.0" data-bank="Punjab National Bank">Punjab National Bank (7.0%)</option>
+              <option value="6.75" data-bank="Bank of Baroda">Bank of Baroda (6.75%)</option>
+              <option value="6.8" data-bank="Canara Bank">Canara Bank (6.8%)</option>
+              <option value="6.5" data-bank="Union Bank of India">Union Bank of India (6.5%)</option>
+              <option value="6.5" data-bank="Bank of India">Bank of India (6.5%)</option>
+              <option value="6.7" data-bank="Indian Bank">Indian Bank (6.7%)</option>
+              <option value="6.5" data-bank="Central Bank of India">Central Bank of India (6.5%)</option>
+              <option value="6.5" data-bank="UCO Bank">UCO Bank (6.5%)</option>
+              <option value="6.5" data-bank="Bank of Maharashtra">Bank of Maharashtra (6.5%)</option>
+            </optgroup>
+
+            <optgroup label="Indian Small Finance Banks (High Yield)">
+              <option value="8.0" data-bank="AU Small Finance">AU Small Finance (8.0%)</option>
+              <option value="8.25" data-bank="Equitas Small Finance">Equitas Small Finance (8.25%)</option>
+              <option value="8.5" data-bank="Ujjivan Small Finance">Ujjivan Small Finance (8.5%)</option>
+              <option value="8.1" data-bank="Utkarsh Small Finance">Utkarsh Small Finance (8.1%)</option>
+              <option value="8.5" data-bank="Suryoday Small Finance">Suryoday Small Finance (8.5%)</option>
+            </optgroup>
+
+            <optgroup label="Foreign Banks Operating in India">
+              <option value="6.5" data-bank="Citibank India">Citibank India (6.5%)</option>
+              <option value="6.75" data-bank="Standard Chartered">Standard Chartered (6.75%)</option>
+              <option value="7.0" data-bank="HSBC India">HSBC India (7.0%)</option>
+              <option value="7.1" data-bank="DBS Bank India">DBS Bank India (7.1%)</option>
+              <option value="6.5" data-bank="Barclays India">Barclays India (6.5%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (USA)">
+              <option value="4.5" data-bank="JPMorgan Chase (US)">JPMorgan Chase (US) (4.5%)</option>
+              <option value="4.3" data-bank="Bank of America">Bank of America (4.3%)</option>
+              <option value="4.5" data-bank="Wells Fargo">Wells Fargo (4.5%)</option>
+              <option value="5.0" data-bank="Goldman Sachs (Marcus)">Goldman Sachs (Marcus) (5.0%)</option>
+              <option value="4.8" data-bank="Citigroup (US)">Citigroup (US) (4.8%)</option>
+              <option value="4.25" data-bank="Morgan Stanley">Morgan Stanley (4.25%)</option>
+              <option value="4.6" data-bank="Capital One">Capital One (4.6%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (Europe & UK)">
+              <option value="4.0" data-bank="HSBC Holdings (UK)">HSBC Holdings (UK) (4.0%)</option>
+              <option value="3.8" data-bank="Barclays (UK)">Barclays (UK) (3.8%)</option>
+              <option value="4.1" data-bank="Lloyds Banking Group">Lloyds Banking Group (4.1%)</option>
+              <option value="3.5" data-bank="BNP Paribas (France)">BNP Paribas (France) (3.5%)</option>
+              <option value="3.5" data-bank="Credit Agricole (France)">Credit Agricole (France) (3.5%)</option>
+              <option value="3.75" data-bank="Deutsche Bank (Germany)">Deutsche Bank (Germany) (3.75%)</option>
+              <option value="3.2" data-bank="UBS (Switzerland)">UBS (Switzerland) (3.2%)</option>
+              <option value="3.9" data-bank="Santander (Spain)">Santander (Spain) (3.9%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (Asia Pacific)">
+              <option value="2.5" data-bank="ICBC (China)">ICBC (China) (2.5%)</option>
+              <option value="2.5" data-bank="Bank of China">Bank of China (2.5%)</option>
+              <option value="3.0" data-bank="Mitsubishi UFJ (Japan)">Mitsubishi UFJ (Japan) (3.0%)</option>
+              <option value="3.2" data-bank="Sumitomo Mitsui (Japan)">Sumitomo Mitsui (Japan) (3.2%)</option>
+              <option value="4.5" data-bank="Commonwealth Bank (Aus)">Commonwealth Bank (Aus) (4.5%)</option>
+              <option value="4.75" data-bank="ANZ Bank (Aus)">ANZ Bank (Aus) (4.75%)</option>
+            </optgroup>
+          </select>
+          <div id="rd-bank-badge" class="bank-badge" style="display:none;"></div>
+          <div id="rd-bank-update" class="bank-rate-status">Live bank rates refresh every 15 seconds.</div>
+        </div>
+        <div class="form-group">
+          <label>Monthly Deposit (₹)</label>
+          <input type="number" id="rd-monthly" class="input-minimal" value="10000" data-panel="rd">
+        </div>
+        <div class="form-group">
+          <label>Interest Rate (%)</label>
+          <div class="range-row"><input type="range" id="rd-rate-range" data-panel="rd" data-unit="%" min="1" max="15" step="0.1" value="7.0"><span class="range-val" id="rd-rate-val">7.0%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Tenure (Months)</label>
+          <div class="range-row"><input type="range" id="rd-tenure-range" data-panel="rd" data-unit="Mo" min="3" max="120" step="1" value="24"><span class="range-val" id="rd-tenure-val">24 Mo</span></div>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="rd">Calculate Returns</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Maturity Overview</div>
+        <div class="result-main">
+          <div class="result-label">Estimated Value</div>
+          <div class="result-value success" id="rd-maturity">₹2,58,624</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Amount Invested</span><span class="r-val" id="rd-invested-disp">₹2,40,000</span></div>
+          <div class="result-row"><span class="r-label">Wealth Gained</span><span class="r-val success" id="rd-interest-disp">₹18,624</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="rd" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="rd-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-fd" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Fixed Deposit</div>
+        <div class="form-group">
+          <label>Global Banking Partner</label>
+          <select id="fd-bank" class="input-minimal" data-panel="fd">
+            <option value="custom">-- Enter Custom Rate --</option>
+            
+            <optgroup label="Top Indian Private Banks">
+              <option value="7.1" data-bank="HDFC Bank">HDFC Bank (7.1%)</option>
+              <option value="7.2" data-bank="ICICI Bank">ICICI Bank (7.2%)</option>
+              <option value="7.3" data-bank="Axis Bank">Axis Bank (7.3%)</option>
+              <option value="7.4" data-bank="Kotak Mahindra Bank">Kotak Mahindra Bank (7.4%)</option>
+              <option value="7.75" data-bank="IndusInd Bank">IndusInd Bank (7.75%)</option>
+              <option value="7.5" data-bank="YES Bank">YES Bank (7.5%)</option>
+              <option value="7.75" data-bank="IDFC First Bank">IDFC First Bank (7.75%)</option>
+              <option value="7.4" data-bank="Federal Bank">Federal Bank (7.4%)</option>
+            </optgroup>
+
+            <optgroup label="Top Indian Public Sector Banks (PSU)">
+              <option value="7.0" data-bank="State Bank of India (SBI)">State Bank of India (SBI) (7.0%)</option>
+              <option value="7.25" data-bank="Punjab National Bank">Punjab National Bank (7.25%)</option>
+              <option value="7.15" data-bank="Bank of Baroda">Bank of Baroda (7.15%)</option>
+              <option value="7.0" data-bank="Canara Bank">Canara Bank (7.0%)</option>
+              <option value="6.8" data-bank="Union Bank of India">Union Bank of India (6.8%)</option>
+              <option value="6.8" data-bank="Bank of India">Bank of India (6.8%)</option>
+              <option value="6.75" data-bank="Central Bank of India">Central Bank of India (6.75%)</option>
+            </optgroup>
+
+            <optgroup label="Indian Small Finance Banks (High Yield)">
+              <option value="8.0" data-bank="AU Small Finance">AU Small Finance (8.0%)</option>
+              <option value="8.5" data-bank="Equitas Small Finance">Equitas Small Finance (8.5%)</option>
+              <option value="8.5" data-bank="Ujjivan Small Finance">Ujjivan Small Finance (8.5%)</option>
+              <option value="8.25" data-bank="Utkarsh Small Finance">Utkarsh Small Finance (8.25%)</option>
+              <option value="8.6" data-bank="Suryoday Small Finance">Suryoday Small Finance (8.6%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (USA)">
+              <option value="4.7" data-bank="JPMorgan Chase (US)">JPMorgan Chase (US) (4.7%)</option>
+              <option value="4.5" data-bank="Bank of America">Bank of America (4.5%)</option>
+              <option value="4.6" data-bank="Wells Fargo">Wells Fargo (4.6%)</option>
+              <option value="5.1" data-bank="Goldman Sachs (Marcus)">Goldman Sachs (Marcus) (5.1%)</option>
+              <option value="4.8" data-bank="Citigroup (US)">Citigroup (US) (4.8%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (Europe & UK)">
+              <option value="4.2" data-bank="HSBC Holdings (UK)">HSBC Holdings (UK) (4.2%)</option>
+              <option value="4.0" data-bank="Barclays (UK)">Barclays (UK) (4.0%)</option>
+              <option value="3.8" data-bank="BNP Paribas (France)">BNP Paribas (France) (3.8%)</option>
+              <option value="4.0" data-bank="Deutsche Bank (Germany)">Deutsche Bank (Germany) (4.0%)</option>
+              <option value="3.5" data-bank="UBS (Switzerland)">UBS (Switzerland) (3.5%)</option>
+            </optgroup>
+
+            <optgroup label="Global Banks (Asia Pacific)">
+              <option value="2.75" data-bank="ICBC (China)">ICBC (China) (2.75%)</option>
+              <option value="3.2" data-bank="Mitsubishi UFJ (Japan)">Mitsubishi UFJ (Japan) (3.2%)</option>
+              <option value="4.75" data-bank="Commonwealth Bank (Aus)">Commonwealth Bank (Aus) (4.75%)</option>
+              <option value="3.8" data-bank="DBS Bank (Singapore)">DBS Bank (Singapore) (3.8%)</option>
+            </optgroup>
+          </select>
+          <div id="fd-bank-badge" class="bank-badge" style="display:none;"></div>
+          <div id="fd-bank-update" class="bank-rate-status">Live bank rates refresh every 15 seconds.</div>
+        </div>
+        <div class="form-group">
+          <label>Principal Amount (₹)</label>
+          <input type="number" id="fd-principal" class="input-minimal" value="500000" data-panel="fd">
+        </div>
+        <div class="form-group">
+          <label>Interest Rate (%)</label>
+          <div class="range-row"><input type="range" id="fd-rate-range" data-panel="fd" data-unit="%" min="1" max="15" step="0.1" value="7.1"><span class="range-val" id="fd-rate-val">7.1%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Tenure (Years)</label>
+          <div class="range-row"><input type="range" id="fd-tenure-range" data-panel="fd" data-unit="Yrs" min="1" max="15" step="0.5" value="3"><span class="range-val" id="fd-tenure-val">3 Yrs</span></div>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="fd">Calculate Returns</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Maturity Overview</div>
+        <div class="result-main">
+          <div class="result-label">Estimated Value</div>
+          <div class="result-value success" id="fd-maturity">₹6,17,627</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Amount Invested</span><span class="r-val" id="fd-principal-disp">₹5,00,000</span></div>
+          <div class="result-row"><span class="r-label">Wealth Gained</span><span class="r-val success" id="fd-interest-disp">₹1,17,627</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="fd" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="fd-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-sip" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Systematic Investment Plan (SIP)</div>
+        <div class="form-group">
+          <label>Monthly SIP Amount (₹)</label>
+          <input type="number" id="sip-monthly" class="input-minimal" value="10000" data-panel="sip">
+        </div>
+        <div class="form-group">
+          <label>Expected Annual Return (%)</label>
+          <div class="range-row"><input type="range" id="sip-rate-range" data-panel="sip" data-unit="%" min="1" max="25" step="0.1" value="12"><span class="range-val" id="sip-rate-val">12.0%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Investment Horizon (Years)</label>
+          <div class="range-row"><input type="range" id="sip-tenure-range" data-panel="sip" data-unit="Yrs" min="1" max="30" step="1" value="10"><span class="range-val" id="sip-tenure-val">10 Yrs</span></div>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="sip">Estimate SIP</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">SIP Outcome</div>
+        <div class="result-main">
+          <div class="result-label">Estimated Portfolio Value</div>
+          <div class="result-value success" id="sip-maturity">₹25,00,000</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Total Invested</span><span class="r-val" id="sip-invested-disp">₹12,00,000</span></div>
+          <div class="result-row"><span class="r-label">Estimated Returns</span><span class="r-val success" id="sip-interest-disp">₹13,00,000</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="sip" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="sip-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-emi" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Loan Configuration</div>
+        <div class="form-group">
+          <label>Principal Amount (₹)</label>
+          <input type="number" id="emi-principal" class="input-minimal" value="1500000" data-panel="emi">
+        </div>
+        <div class="form-group">
+          <label>Interest Rate (%)</label>
+          <div class="range-row"><input type="range" id="emi-rate-range" data-panel="emi" data-unit="%" min="1" max="30" step="0.1" value="9.0"><span class="range-val" id="emi-rate-val">9.0%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Tenure (Years)</label>
+          <div class="range-row"><input type="range" id="emi-tenure-range" data-panel="emi" data-unit="Yrs" min="1" max="30" step="1" value="10"><span class="range-val" id="emi-tenure-val">10 Yrs</span></div>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="emi">Calculate EMI</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Payment Overview</div>
+        <div class="result-main">
+          <div class="result-label">Monthly EMI</div>
+          <div class="result-value warning" id="emi-monthly">₹19,001</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Principal</span><span class="r-val" id="emi-principal-disp">₹15,00,000</span></div>
+          <div class="result-row"><span class="r-label">Interest Payable</span><span class="r-val warning" id="emi-interest-disp">₹7,80,186</span></div>
+          <div class="result-row"><span class="r-label">Total Amount</span><span class="r-val" id="emi-total-disp">₹22,80,186</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="emi" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="emi-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-gst" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">GST Calculator</div>
+        <div class="form-group">
+          <label>Invoice Amount (₹)</label>
+          <input type="number" id="gst-amount" class="input-minimal" value="10000" data-panel="gst" min="0">
+        </div>
+        <div class="form-group">
+          <label>GST Rate</label>
+          <select id="gst-rate" class="input-minimal" data-panel="gst">
+            <option value="5">5%</option>
+            <option value="12">12%</option>
+            <option value="18" selected>18%</option>
+            <option value="28">28%</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tax Structure</label>
+          <select id="gst-type" class="input-minimal" data-panel="gst">
+            <option value="cgst-sgst" selected>CGST + SGST</option>
+            <option value="igst">IGST</option>
+          </select>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="gst">Calculate GST</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Tax Summary</div>
+        <div class="result-main">
+          <div class="result-label">Total GST</div>
+          <div class="result-value" id="gst-tax-disp">₹1,800</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Original Amount</span><span class="r-val" id="gst-amount-disp">₹10,000</span></div>
+          <div class="result-row"><span class="r-label" id="gst-split-label">CGST / SGST each</span><span class="r-val" id="gst-split-disp">₹900</span></div>
+          <div class="result-row"><span class="r-label">Total Amount</span><span class="r-val success" id="gst-total-disp">₹11,800</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="gst" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="gst-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-nw" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Asset Calculation</div>
+        <div class="form-group">
+          <label style="color:var(--success)">Total Assets (Investments, Real Estate, Cash)</label>
+          <input type="number" id="nw-assets" class="input-minimal" value="5000000" data-panel="nw">
+        </div>
+        <div class="form-group">
+          <label style="color:var(--warning)">Total Liabilities (Loans, Credit Debt)</label>
+          <input type="number" id="nw-liabilities" class="input-minimal" value="1200000" data-panel="nw">
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="nw">Calculate</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Financial Standing</div>
+        <div class="result-main">
+          <div class="result-label">Net Worth</div>
+          <div class="result-value" id="nw-total">₹38,00,000</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Total Assets</span><span class="r-val success" id="nw-assets-disp">₹50,00,000</span></div>
+          <div class="result-row"><span class="r-label">Total Debt</span><span class="r-val warning" id="nw-liabilities-disp">₹12,00,000</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="nw" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="nw-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-loan" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Loan Comparison</div>
+        <div class="form-group">
+          <label>Loan A Principal</label>
+          <input type="number" id="loan-a-principal" class="input-minimal" value="1500000" data-panel="loan">
+        </div>
+        <div class="form-group">
+          <label>Loan A Rate (%)</label>
+          <div class="range-row"><input type="range" id="loan-a-rate-range" data-panel="loan" data-unit="%" min="1" max="25" step="0.1" value="9.0"><span class="range-val" id="loan-a-rate-val">9.0%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Loan A Tenure (Years)</label>
+          <div class="range-row"><input type="range" id="loan-a-tenure-range" data-panel="loan" data-unit="Yrs" min="1" max="30" step="1" value="10"><span class="range-val" id="loan-a-tenure-val">10 Yrs</span></div>
+        </div>
+        <div class="form-group">
+          <label>Loan B Principal</label>
+          <input type="number" id="loan-b-principal" class="input-minimal" value="1500000" data-panel="loan">
+        </div>
+        <div class="form-group">
+          <label>Loan B Rate (%)</label>
+          <div class="range-row"><input type="range" id="loan-b-rate-range" data-panel="loan" data-unit="%" min="1" max="25" step="0.1" value="10.5"><span class="range-val" id="loan-b-rate-val">10.5%</span></div>
+        </div>
+        <div class="form-group">
+          <label>Loan B Tenure (Years)</label>
+          <div class="range-row"><input type="range" id="loan-b-tenure-range" data-panel="loan" data-unit="Yrs" min="1" max="30" step="1" value="12"><span class="range-val" id="loan-b-tenure-val">12 Yrs</span></div>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="loan">Compare Loans</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Comparison Summary</div>
+        <div class="result-main">
+          <div class="result-label">Best Option</div>
+          <div class="result-value success" id="loan-best">Loan A</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Loan A EMI</span><span class="r-val" id="loan-a-emi">₹19,001</span></div>
+          <div class="result-row"><span class="r-label">Loan B EMI</span><span class="r-val" id="loan-b-emi">₹18,512</span></div>
+          <div class="result-row"><span class="r-label">Loan A Total Interest</span><span class="r-val" id="loan-a-interest">₹7,80,186</span></div>
+          <div class="result-row"><span class="r-label">Loan B Total Interest</span><span class="r-val" id="loan-b-interest">₹8,13,784</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="loan" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="loan-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-ret" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Retirement Goal</div>
+        <div class="form-group">
+          <label>Current Age</label>
+          <input type="number" id="ret-current-age" class="input-minimal" value="30" data-panel="ret">
+        </div>
+        <div class="form-group">
+          <label>Retirement Age</label>
+          <input type="number" id="ret-retirement-age" class="input-minimal" value="60" data-panel="ret">
+        </div>
+        <div class="form-group">
+          <label>Current Savings (₹)</label>
+          <input type="number" id="ret-current-savings" class="input-minimal" value="500000" data-panel="ret">
+        </div>
+        <div class="form-group">
+          <label>Monthly Contribution (₹)</label>
+          <input type="number" id="ret-monthly" class="input-minimal" value="20000" data-panel="ret">
+        </div>
+        <div class="form-group">
+          <label>Expected Annual Return (%)</label>
+          <input type="number" id="ret-rate" class="input-minimal" value="10" data-panel="ret" step="0.1">
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="ret">Project Retirement</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Retirement Projection</div>
+        <div class="result-main">
+          <div class="result-label">Estimated Future Value</div>
+          <div class="result-value success" id="ret-value">₹1,23,45,678</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Total Contributions</span><span class="r-val" id="ret-contributions">₹72,00,000</span></div>
+          <div class="result-row"><span class="r-label">Investment Growth</span><span class="r-val success" id="ret-growth">₹51,45,678</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="ret" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="ret-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-ins" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Insurance Premium</div>
+        <div class="form-group">
+          <label>Coverage Amount (₹)</label>
+          <input type="number" id="ins-coverage" class="input-minimal" value="5000000" data-panel="ins">
+        </div>
+        <div class="form-group">
+          <label>Term Length (Years)</label>
+          <input type="number" id="ins-term" class="input-minimal" value="20" data-panel="ins">
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" id="ins-age" class="input-minimal" value="35" data-panel="ins">
+        </div>
+        <div class="form-group">
+          <label>Health Factor</label>
+          <select id="ins-health" class="input-minimal" data-panel="ins">
+            <option value="0.8">Excellent</option>
+            <option value="1" selected>Good</option>
+            <option value="1.2">Fair</option>
+            <option value="1.5">Poor</option>
+          </select>
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="ins">Estimate Premium</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Policy Snapshot</div>
+        <div class="result-main">
+          <div class="result-label">Estimated Annual Premium</div>
+          <div class="result-value success" id="ins-premium">₹1,34,567</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Coverage</span><span class="r-val" id="ins-coverage-disp">₹50,00,000</span></div>
+          <div class="result-row"><span class="r-label">Term</span><span class="r-val" id="ins-term-disp">20 years</span></div>
+          <div class="result-row"><span class="r-label">Health Factor</span><span class="r-val" id="ins-health-disp">Good</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="ins" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="ins-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="calc-bud" class="calc-panel" role="tabpanel">
+      <div class="vision-glass calc-box">
+        <div class="box-title">Budget Planner</div>
+        <div class="form-group">
+          <label>Monthly Income (₹)</label>
+          <input type="number" id="bud-income" class="input-minimal" value="150000" data-panel="bud">
+        </div>
+        <div class="form-group">
+          <label>Housing</label>
+          <input type="number" id="bud-housing" class="input-minimal" value="40000" data-panel="bud">
+        </div>
+        <div class="form-group">
+          <label>Food</label>
+          <input type="number" id="bud-food" class="input-minimal" value="15000" data-panel="bud">
+        </div>
+        <div class="form-group">
+          <label>Transport</label>
+          <input type="number" id="bud-transport" class="input-minimal" value="8000" data-panel="bud">
+        </div>
+        <div class="form-group">
+          <label>Entertainment / Other</label>
+          <input type="number" id="bud-other" class="input-minimal" value="12000" data-panel="bud">
+        </div>
+        <div class="form-group">
+          <label>Savings Target (%)</label>
+          <input type="number" id="bud-savings-target" class="input-minimal" value="25" data-panel="bud" min="0" max="100">
+        </div>
+        <button type="button" class="btn-calculate" data-action="calculate" data-panel="bud">Plan Budget</button>
+      </div>
+      <div class="vision-glass calc-box">
+        <div class="box-title">Cash Flow Summary</div>
+        <div class="result-main">
+          <div class="result-label">Monthly Savings</div>
+          <div class="result-value success" id="bud-savings">₹37,500</div>
+        </div>
+        <div class="result-breakdown">
+          <div class="result-row"><span class="r-label">Total Expenses</span><span class="r-val" id="bud-expenses">₹74,000</span></div>
+          <div class="result-row"><span class="r-label">Target Savings</span><span class="r-val success" id="bud-target">₹37,500</span></div>
+          <div class="result-row"><span class="r-label">Surplus / Deficit</span><span class="r-val" id="bud-surplus">₹38,500</span></div>
+        </div>
+        <div class="result-footer">
+          <button class="btn-secondary export-btn" data-panel="bud" type="button">Export Result</button>
+        </div>
+        <div class="chart-panel" id="bud-chart-panel" aria-live="polite"></div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  <div class="nav-logo">Fin<span>Command</span></div>
+  <p style="font-size: 0.85rem; color:var(--text-secondary);">
+    Designed for spatial clarity. Global Matrix v2.0
+  </p>
+</footer>
+
+<!-- Subscription Modal -->
+<div id="subscription-modal" class="subscription-modal">
+  <div class="subscription-modal-content">
+    <button id="subscription-close" class="subscription-close">&times;</button>
+    <h2>Choose Your Plan</h2>
+    <div class="subscription-modal-subtitle">Pick the perfect plan for your financial calculations</div>
+    <div class="pricing-grid">
+      <div class="pricing-card" data-tier="FREE">
+        <div class="plan-badge">Most Popular</div>
+        <h3>Free</h3>
+        <div class="plan-price"><span class="price">₹0</span><span class="period">/forever</span></div>
+        <ul class="plan-features">
+          <li data-included="true">Unlimited calculations across all tools</li>
+          <li data-included="true">Real-time bank rates</li>
+          <li data-included="true">Multi-currency support</li>
+          <li data-included="false">Export features</li>
+          <li data-included="false">Advanced charts</li>
+          <li data-included="false">Priority support</li>
+        </ul>
+        <button class="upgrade-btn" data-tier="FREE" disabled>Current Plan</button>
+      </div>
+
+      <div class="pricing-card" data-tier="PRO">
+        <div class="plan-badge">Best Value</div>
+        <h3>Pro</h3>
+        <div class="plan-price"><span class="price">₹99</span><span class="period">/month</span></div>
+        <ul class="plan-features">
+          <li data-included="true">✓ Unlimited calculations</li>
+          <li data-included="true">✓ Export results to PDF</li>
+          <li data-included="true">✓ Historical rate data</li>
+          <li data-included="true">✓ Real-time bank rates</li>
+          <li data-included="true">✓ Multi-currency support</li>
+          <li data-included="true">✓ Advanced charts & graphs</li>
+        </ul>
+        <button class="upgrade-btn" data-tier="PRO">Pay ₹99 / month</button>
+      </div>
+
+      <div class="pricing-card" data-tier="PRO_PLUS">
+        <div class="plan-badge">Premium</div>
+        <h3>Pro Plus</h3>
+        <div class="plan-price"><span class="price">₹299</span><span class="period">/month</span></div>
+        <ul class="plan-features">
+          <li data-included="true">✓ Unlimited calculations</li>
+          <li data-included="true">✓ Export to PDF & Excel</li>
+          <li data-included="true">✓ Advanced charts & graphs</li>
+          <li data-included="true">✓ Historical analytics</li>
+          <li data-included="true">✓ Priority 24/7 support</li>
+          <li data-included="true">✓ API access</li>
+        </ul>
+        <button class="upgrade-btn" data-tier="PRO_PLUS">Pay ₹299 / month</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Modal -->
+<div id="payment-modal" class="payment-modal">
+  <div class="payment-modal-content">
+    <button id="payment-close" class="payment-close">&times;</button>
+    <h2>💳 Complete Your Payment</h2>
+    <div class="payment-summary">
+      <div class="payment-summary-item">
+        <span>📱 Plan:</span>
+        <strong id="payment-tier-name">Pro</strong>
+      </div>
+      <div class="payment-summary-item">
+        <span>💰 Amount:</span>
+        <strong>₹<span id="payment-amount">99</span>/month</strong>
+      </div>
+      <div class="payment-summary-item">
+        <span>✨ Includes:</span>
+        <span id="payment-description">Export, analytics, and premium support</span>
+      </div>
+    </div>
+
+    <!-- Payment Method Tabs -->
+    <div class="payment-method-tabs">
+      <button type="button" class="payment-method-tab active" data-method="card">
+        💳 Card
+      </button>
+      <button type="button" class="payment-method-tab" data-method="upi">
+        📱 UPI
+      </button>
+    </div>
+
+    <!-- Card Payment Form -->
+    <form class="payment-form payment-form-card" id="payment-form-card">
+      <div class="form-group">
+        <label>💳 Card Number</label>
+        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" required autocomplete="off">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>📅 Expiry Date</label>
+          <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5" required autocomplete="off">
+        </div>
+        <div class="form-group">
+          <label>🔐 CVV</label>
+          <input type="text" id="card-cvv" placeholder="123" maxlength="4" required autocomplete="off">
+        </div>
+      </div>
+      <button type="button" id="payment-submit-card" class="payment-submit">✓ Complete Payment</button>
+      <p class="payment-disclaimer">🔒 Card details are encrypted and never stored.</p>
+    </form>
+
+    <!-- UPI Payment Form -->
+    <form class="payment-form payment-form-upi" id="payment-form-upi" style="display: none;">
+      <p class="upi-info">💰 Click below to proceed with secure UPI payment</p>
+      <p class="upi-info">You'll be redirected to Razorpay to complete payment with your preferred UPI app</p>
+      <button type="button" id="payment-submit-upi" class="payment-submit">✓ Proceed with UPI Payment</button>
+      <p class="payment-disclaimer">🔒 Secure payment powered by Razorpay • Works with Google Pay, PhonePe, Paytm & more</p>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js" defer></script>
+<script src="motion.js" defer></script>
+<script src="script.js" defer></script>
+<script src="subscriptions.js" defer></script>
+</body>
+</html>

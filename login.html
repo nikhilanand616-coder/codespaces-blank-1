@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinCommand Login</title>
+  <meta name="description" content="FinCommand login and registration page with API key authentication.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="orbital-scene" aria-hidden="true">
+    <canvas id="motion-canvas"></canvas>
+    <div class="scene-orbit orbit-one"></div>
+    <div class="scene-orbit orbit-two"></div>
+    <div class="scene-core"></div>
+  </div>
+  <div class="auth-shell">
+    <div class="auth-card">
+      <header class="auth-header">
+        <div class="auth-brand">
+          <div class="logo-wrapper">
+            <img src="logo.svg" alt="FinCommand logo" class="logo-icon">
+            <span class="logo-text">Fin<span>Command</span></span>
+          </div>
+          <span class="auth-chip">Premium</span>
+        </div>
+        <h1 class="auth-title">Secure financial access</h1>
+        <p class="auth-copy">Sign in or create an account to access your financial console with confidence.</p>
+        <p class="auth-copy" style="margin-top: 0.75rem; color: var(--success); font-weight: 600;">Security mode: MAXIMUM • Quick Heal-level protection enabled</p>
+      </header>
+
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" data-form="login">Existing User</button>
+        <button type="button" class="auth-tab" data-form="register">New User</button>
+      </div>
+
+      <form id="login-form" class="auth-form active" autocomplete="off">
+        <label>Email address</label>
+        <input type="email" id="login-email" required placeholder="you@example.com">
+
+        <label>Password</label>
+        <input type="password" id="login-password" required placeholder="Enter your password">
+        <div class="auth-opt">
+          <label><input type="checkbox" id="remember-me"> Remember me</label>
+        </div>
+
+        <button type="submit" class="btn-primary">Sign In</button>
+        <button type="button" class="auth-link" id="show-reset">Forgot password?</button>
+        <div class="auth-divider"><span>or</span></div>
+        <div id="google-signin" class="google-signin" aria-label="Sign in with Google"></div>
+        <p id="google-unavailable" class="google-unavailable" hidden>Google sign-in will be available after the Google Client ID is configured.</p>
+      </form>
+
+      <form id="register-form" class="auth-form" autocomplete="off">
+        <label>Email address</label>
+        <input type="email" id="register-email" required placeholder="you@example.com">
+
+        <label>Password</label>
+        <input type="password" id="register-password" required placeholder="Create a password">
+        <div class="password-strength" id="password-strength">Password strength: <strong>Optional guidance only</strong></div>
+
+        <label>Confirm password</label>
+        <input type="password" id="register-confirm" required placeholder="Confirm password">
+
+        <button type="submit" class="btn-primary">Create Account</button>
+      </form>
+
+      <form id="reset-form" class="auth-form" autocomplete="off">
+        <p class="auth-copy">Enter your account email to reset your password.</p>
+        <label>Email address</label>
+        <input type="email" id="reset-email" required placeholder="you@example.com">
+        <button type="button" class="btn-primary" id="request-reset">Send reset code</button>
+        <div id="reset-confirm-fields" hidden>
+          <label>Reset code</label>
+          <input type="text" id="reset-token" autocomplete="one-time-code" placeholder="Enter reset code">
+          <label>New password</label>
+          <input type="password" id="reset-password" required placeholder="Enter a new password">
+          <button type="submit" class="btn-primary">Update password</button>
+        </div>
+        <button type="button" class="auth-link" id="back-to-login">Back to sign in</button>
+      </form>
+
+      <div class="auth-footer">
+        <p>Existing user? Use <strong>existing@fincommand.local</strong> / <strong>FinCommand123!</strong></p>
+        <p class="auth-message" id="auth-message"></p>
+      </div>
+    </div>
+  </div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js" defer></script>
+  <script src="motion.js" defer></script>
+  <script src="auth.js" defer></script>
+</body>
+</html>
